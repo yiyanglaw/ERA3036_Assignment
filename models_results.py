@@ -2,13 +2,13 @@ import sqlite3
 import re
 
 def extract_metrics(file_content):
-    pattern = r'Confusion Matrix:.*?(\d+)\D+(\d+)\D+(\d+)\D+(\d+).*?Accuracy:\s*([\d.]+).*?Precision:\s*([\d.]+).*?Recall:\s*([\d.]+).*?F1 Score:\s*([\d.]+).*?ROC AUC Score:\s*([\d.]+)'
+    pattern = r'Confusion Matrix:.*?\[\s*(\d+)\s+(\d+)\s+(\d+)\s*\]\s*\[\s*(\d+)\s+(\d+)\s+(\d+)\s*\]\s*\[\s*(\d+)\s+(\d+)\s+(\d+)\s*\].*?Accuracy:\s*([\d.]+).*?Precision:\s*([\d.]+).*?Recall:\s*([\d.]+).*?F1 Score:\s*([\d.]+).*?ROC AUC Score:\s*([\d.]+)'
     match = re.search(pattern, file_content, re.DOTALL)
     
     if match:
         # Extract values 
-        confusion_matrix = [int(match.group(i)) for i in range(1, 5)]
-        accuracy, precision, recall, f1_score, roc_auc_score = map(float, match.group(5, 6, 7, 8, 9))
+        confusion_matrix = [int(match.group(i)) for i in range(1, 10)]
+        accuracy, precision, recall, f1_score, roc_auc_score = map(float, match.group(10, 11, 12, 13, 14))
         return confusion_matrix, accuracy, precision, recall, f1_score, roc_auc_score
     else:
         return None
