@@ -1,0 +1,11 @@
+cv2
+numpy
+scikit-learn
+joblib
+argparse
+Pillow
+tqdm
+streamlit
+plotly
+matplotlib
+yellowbrick
