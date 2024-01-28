@@ -57,6 +57,6 @@ def results_handling(db_path, file_paths):
     
     
 if __name__ == "__main__":
-    file_paths = ["tuned_svm.txt","tuned_knn.txt", "tuned_gbt.txt", "tuned_nn.txt","tuned_decision_t.txt","tuned_logistic.txt","tuned_nb.txt","tuned_rf.txt"]  
+    file_paths = ["tuned_svm.txt","tuned_svm_without_data_aug.txt","tuned_knn.txt", "tuned_gbt.txt", "tuned_nn.txt","tuned_decision_t.txt","tuned_logistic.txt","tuned_nb.txt","tuned_rf.txt"]  
     db_path = "model_results.db"
     results_handling(db_path, file_paths)
