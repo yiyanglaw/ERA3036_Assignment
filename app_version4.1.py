@@ -307,11 +307,26 @@ def evaluate_unsupervised_model_with_clusters(model, X):
 
     return num_clusters_range, silhouette_scores
 
+# Function to unzip the 'three_shapes_filled.zip' file
 def unzip_folder(zipped_folder_path, destination_folder):
     try:
         with zipfile.ZipFile(zipped_folder_path, 'r') as zip_ref:
             zip_ref.extractall(destination_folder)
         print(f"Successfully unzipped '{zipped_folder_path}' to '{destination_folder}'.")
+
+        # Check if 'three_shapes_filled' folder exists inside the destination folder
+        extracted_folder = os.path.join(destination_folder, 'three_shapes_filled')
+        if not os.path.exists(extracted_folder):
+            raise FileNotFoundError(f"The 'three_shapes_filled' folder is not found inside '{destination_folder}'.")
+
+        # Check if 'train' and 'validate' folders exist inside the 'three_shapes_filled' folder
+        train_folder = os.path.join(extracted_folder, 'train')
+        validate_folder = os.path.join(extracted_folder, 'validate')
+        if not (os.path.exists(train_folder) and os.path.exists(validate_folder)):
+            raise FileNotFoundError(f"The 'train' and 'validate' folders are not found inside 'three_shapes_filled' folder.")
+        
+        return train_folder, validate_folder
+
     except Exception as e:
         print(f"Error while unzipping: {e}")
 
@@ -427,16 +442,15 @@ def main():
     destination_folder = '.'  #  current directory
 
     # Call the unzip_folder function
-    unzip_folder(zipped_folder_path, destination_folder)
+    train_folder, validate_folder = unzip_folder('three_shapes_filled.zip', '.')
 
 
     # Load and preprocess data for testing
-    validate_folder = os.path.join('three_shapes_filled', 'three_shapes_filled', 'validate')
     X_test, y_test = load_data(validate_folder)
-
+    
     # Load and preprocess data for training
-    train_folder = os.path.join('three_shapes_filled', 'three_shapes_filled', 'train')
     X_train, y_train = load_data(train_folder)
+
 
     # Classification Report for Supervised Models
     st.header(f"Classification Report for {selected_supervised_model}")
