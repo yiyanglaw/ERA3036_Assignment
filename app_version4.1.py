@@ -508,31 +508,30 @@ def main():
     plot_model_metrics(supervised_model_names, supervised_model_f1_scores, 'F1 Score')
 
     
-'''
     # Unsupervised Learning Section
-    st.header("Unsupervised Learning")
+    #st.header("Unsupervised Learning")
 
     # Allow the user to select the unsupervised model
-    selected_unsupervised_model = st.selectbox("Select Unsupervised Model:", ['kmeans.joblib'], key="unsupervised_model_selection")
+    #selected_unsupervised_model = st.selectbox("Select Unsupervised Model:", ['kmeans.joblib'], key="unsupervised_model_selection")
 
     # Load the selected unsupervised model
-    unsupervised_model = load_model(selected_unsupervised_model)
+    #unsupervised_model = load_model(selected_unsupervised_model)
 
     # Evaluate and display metrics for unsupervised model 
-    num_clusters_range, silhouette_scores = evaluate_unsupervised_model_with_clusters(unsupervised_model, X_train)
+    #num_clusters_range, silhouette_scores = evaluate_unsupervised_model_with_clusters(unsupervised_model, X_train)
 
     # Plot Silhouette Score vs Number of Clusters
-    fig_silhouette_vs_clusters = px.line(x=num_clusters_range, y=silhouette_scores, markers=True)
-    fig_silhouette_vs_clusters.update_layout(title_text='Silhouette Score vs Number of Clusters', xaxis_title='Number of Clusters', yaxis_title='Silhouette Score')
-    st.plotly_chart(fig_silhouette_vs_clusters)
+    #fig_silhouette_vs_clusters = px.line(x=num_clusters_range, y=silhouette_scores, markers=True)
+    #fig_silhouette_vs_clusters.update_layout(title_text='Silhouette Score vs Number of Clusters', xaxis_title='Number of Clusters', yaxis_title='Silhouette Score')
+    #st.plotly_chart(fig_silhouette_vs_clusters)
 
     # Display the silhouette scores for each number of clusters
-    st.write("Silhouette Scores for Each Number of Clusters:")
-    st.write(list(zip(num_clusters_range, silhouette_scores)))
+    #st.write("Silhouette Scores for Each Number of Clusters:")
+    #st.write(list(zip(num_clusters_range, silhouette_scores)))
     
     # cluster labels
-    cluster_labels = unsupervised_model.predict(X_train)
-'''
+    #cluster_labels = unsupervised_model.predict(X_train)
+    
     #anchor for back to top
     st.markdown("""
         <div style="text-align:center; padding: 10px; margin-top: 50px; background-color: #f4f4f4;">
