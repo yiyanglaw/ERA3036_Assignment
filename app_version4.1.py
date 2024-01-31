@@ -33,6 +33,8 @@ from sklearn.tree import plot_tree
 #unzip folder
 import zipfile
 
+import os
+
 
 # Function to plot Precision-Recall Curves
 def plot_precision_recall_curves(y_test, y_probs, num_classes):
