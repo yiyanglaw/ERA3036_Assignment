@@ -330,6 +330,17 @@ def unzip_folder(zipped_folder_path, destination_folder):
     except Exception as e:
         print(f"Error while unzipping: {e}")
 
+# Function to unzip the 'svm.zip' file
+def unzip_svm_model():
+    zipped_folder_path = 'svm.zip'
+    destination_folder = '.'  # current directory
+
+    try:
+        with zipfile.ZipFile(zipped_folder_path, 'r') as zip_ref:
+            zip_ref.extract('svm.joblib', destination_folder)
+        st.success(f"Successfully unzipped 'svm.joblib' from '{zipped_folder_path}' to '{destination_folder}'.")
+    except Exception as e:
+        st.error(f"Error while unzipping: {e}")
 
 #Main functions to call all other functions
 def main():
@@ -402,6 +413,8 @@ def main():
 
     # Shape Classification Section
     st.header("Shape Classification")
+
+    unzip_svm_model()
 
     # select the supervised model
     selected_supervised_model = st.selectbox("Select Supervised Model:", ['svm.joblib','svm_without_data_aug.joblib', 'knn.joblib', 'nn.joblib', 'log.joblib', 'decision_t.joblib','gnb.joblib','gbt.joblib','rf.joblib'])
