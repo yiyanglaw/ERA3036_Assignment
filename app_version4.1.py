@@ -414,8 +414,6 @@ def main():
     # Shape Classification Section
     st.header("Shape Classification")
 
-    unzip_svm_model()
-
     # select the supervised model
     selected_supervised_model = st.selectbox("Select Supervised Model:", ['svm.joblib','svm_without_data_aug.joblib', 'knn.joblib', 'nn.joblib', 'log.joblib', 'decision_t.joblib','gnb.joblib','gbt.joblib','rf.joblib'])
     
