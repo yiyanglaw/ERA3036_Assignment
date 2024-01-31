@@ -182,24 +182,28 @@ def process_image(image_path):
         return preprocess_image(PIL.Image.open(file))
 
 #function to load image from folder
+import os
+
 def load_data(folder_path):
-    X = []
-    y = []
+    shape_folders = [os.path.join(folder_path, shape) for shape in os.listdir(folder_path) if os.path.isdir(os.path.join(folder_path, shape))]
 
-    for shape_label, shape in enumerate(['circle', 'square', 'triangle']):
-        shape_folder = os.path.join(folder_path, shape)
-        image_paths = [os.path.join(shape_folder, image_file) for image_file in os.listdir(shape_folder) if
-                       os.path.isfile(os.path.join(shape_folder, image_file))]
+    image_paths = []
+    labels = []
 
-        results = Parallel(n_jobs=-1)(delayed(process_image)(image_path) for image_path in image_paths)
+    for shape_folder in shape_folders:
+        print(f"Processing shape folder: {shape_folder}")
+        
+        # Check if the folder contains any images
+        if not os.listdir(shape_folder):
+            print(f"Warning: {shape_folder} is empty.")
+            continue
 
-        X.extend(results)
-        y.extend([shape_label] * len(results))
+        current_label = os.path.basename(shape_folder)  # Extract label from folder name
+        image_paths += [os.path.join(shape_folder, image_file) for image_file in os.listdir(shape_folder) if image_file.endswith(('.png', '.jpg', '.jpeg'))]
+        labels += [current_label] * len(os.listdir(shape_folder))
 
-    X = np.array(X)
-    y = np.array(y)
+    return image_paths, labels
 
-    return X, y
 
 #perform train_test split
 def preprocess_and_split_data(folder_path):
