@@ -1,5 +1,4 @@
 opencv-python-headless
-cv2
 numpy
 scikit-learn
 joblib
