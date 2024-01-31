@@ -424,11 +424,11 @@ def main():
     st.title("Shape Classifier App - Dashboard")
 
     # Load and preprocess data for testing
-    validate_folder = os.path.join(extracted_folder, 'three_shapes_filled', 'validate')
+    validate_folder = os.path.join('three_shapes_filled', 'three_shapes_filled', 'validate')
     X_test, y_test = load_data(validate_folder)
 
     # Load and preprocess data for training
-    train_folder = os.path.join(extracted_folder, 'three_shapes_filled', 'train')
+    train_folder = os.path.join('three_shapes_filled', 'three_shapes_filled', 'train')
     X_train, y_train = load_data(train_folder)
 
     # Classification Report for Supervised Models
