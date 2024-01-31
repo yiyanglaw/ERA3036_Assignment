@@ -370,8 +370,8 @@ def main():
     
     #link to other website
     st.markdown("""
-        [Download Resources](https://www.youtube.com/) | 
-        [User Manual](https://example.com/)
+        [Download Resources](https://github.com/yiyanglaw) | 
+        [User Manual](https://yiyanglaw.github.io/Shape_User_manual/)
     """)
 
     # Custom CSS to position the links at the top right corner
