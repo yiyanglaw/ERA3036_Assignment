@@ -508,7 +508,7 @@ def main():
     plot_model_metrics(supervised_model_names, supervised_model_f1_scores, 'F1 Score')
 
     
-
+'''
     # Unsupervised Learning Section
     st.header("Unsupervised Learning")
 
@@ -532,7 +532,7 @@ def main():
     
     # cluster labels
     cluster_labels = unsupervised_model.predict(X_train)
-
+'''
     #anchor for back to top
     st.markdown("""
         <div style="text-align:center; padding: 10px; margin-top: 50px; background-color: #f4f4f4;">
