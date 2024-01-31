@@ -251,8 +251,11 @@ def evaluate_model(model, X_test, y_test):
 def save_model(model, model_path='best_model2.joblib'):
     joblib.dump(model, model_path)
 
-def load_model(model_path='best_model2.joblib'):
+def load_model(model_name):
+    current_directory = os.path.dirname(os.path.realpath(__file__))  # Get the current directory of the script
+    model_path = os.path.join(current_directory, model_name)  # Construct the full path to the model file
     return joblib.load(model_path)
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Train and evaluate models on shape data.')
