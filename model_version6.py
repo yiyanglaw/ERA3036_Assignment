@@ -251,13 +251,8 @@ def evaluate_model(model, X_test, y_test):
 def save_model(model, model_path='best_model2.joblib'):
     joblib.dump(model, model_path)
 
-def load_model(model_path):
-    try:
-        return joblib.load(model_path)
-    except FileNotFoundError:
-        print(f"Error: Model file '{model_path}' not found.")
-        return None
-
+def load_model(model_path='best_model2.joblib'):
+    return joblib.load(model_path)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Train and evaluate models on shape data.')
