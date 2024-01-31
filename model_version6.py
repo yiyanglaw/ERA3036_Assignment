@@ -185,24 +185,23 @@ def process_image(image_path):
 import os
 
 def load_data(folder_path):
-    shape_folders = [os.path.join(folder_path, shape) for shape in os.listdir(folder_path) if os.path.isdir(os.path.join(folder_path, shape))]
+    X = []
+    y = []
 
-    image_paths = []
-    labels = []
+    for shape_label, shape in enumerate(['circle', 'square', 'triangle']):
+        shape_folder = os.path.join(folder_path, shape)
+        image_paths = [os.path.join(shape_folder, image_file) for image_file in os.listdir(shape_folder) if
+                       os.path.isfile(os.path.join(shape_folder, image_file))]
 
-    for shape_folder in shape_folders:
-        print(f"Processing shape folder: {shape_folder}")
-        
-        # Check if the folder contains any images
-        if not os.listdir(shape_folder):
-            print(f"Warning: {shape_folder} is empty.")
-            continue
+        results = Parallel(n_jobs=-1)(delayed(process_image)(image_path) for image_path in image_paths)
 
-        current_label = os.path.basename(shape_folder)  # Extract label from folder name
-        image_paths += [os.path.join(shape_folder, image_file) for image_file in os.listdir(shape_folder) if image_file.endswith(('.png', '.jpg', '.jpeg'))]
-        labels += [current_label] * len(os.listdir(shape_folder))
+        X.extend(results)
+        y.extend([shape_label] * len(results))
 
-    return image_paths, labels
+    X = np.array(X)
+    y = np.array(y)
+
+    return X, y
 
 
 #perform train_test split
