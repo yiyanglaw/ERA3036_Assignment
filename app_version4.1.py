@@ -423,6 +423,13 @@ def main():
     # Dashboard Section
     st.title("Shape Classifier App - Dashboard")
 
+    zipped_folder_path = 'three_shapes_filled.zip'
+    destination_folder = '.'  #  current directory
+
+    # Call the unzip_folder function
+    unzip_folder(zipped_folder_path, destination_folder)
+
+
     # Load and preprocess data for testing
     validate_folder = os.path.join('three_shapes_filled', 'three_shapes_filled', 'validate')
     X_test, y_test = load_data(validate_folder)
