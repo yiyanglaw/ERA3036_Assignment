@@ -330,17 +330,6 @@ def unzip_folder(zipped_folder_path, destination_folder):
     except Exception as e:
         print(f"Error while unzipping: {e}")
 
-# Function to unzip the 'svm.zip' file
-def unzip_svm_model():
-    zipped_folder_path = 'svm.zip'
-    destination_folder = '.'  # current directory
-
-    try:
-        with zipfile.ZipFile(zipped_folder_path, 'r') as zip_ref:
-            zip_ref.extract('svm.joblib', destination_folder)
-        st.success(f"Successfully unzipped 'svm.joblib' from '{zipped_folder_path}' to '{destination_folder}'.")
-    except Exception as e:
-        st.error(f"Error while unzipping: {e}")
 
 #Main functions to call all other functions
 def main():
@@ -552,7 +541,6 @@ def main():
     """, unsafe_allow_html=True)
 
 if __name__ == "__main__":
-    unzip_svm_model()
     main()
 
 
