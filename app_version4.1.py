@@ -554,6 +554,7 @@ def main():
     """, unsafe_allow_html=True)
 
 if __name__ == "__main__":
+    unzip_svm_model()
     main()
 
 
