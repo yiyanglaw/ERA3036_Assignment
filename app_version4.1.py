@@ -410,7 +410,7 @@ def main():
     st.header("Shape Classification")
 
     # select the supervised model
-    selected_supervised_model = st.selectbox("Select Supervised Model:", ['svm.joblib','svm_without_data_aug.joblib', 'knn.joblib', 'nn.joblib', 'log.joblib', 'decision_t.joblib','gnb.joblib','gbt.joblib','rf.joblib'])
+    selected_supervised_model = st.selectbox("Select Supervised Model:", ['svm.joblib','svm_without_data_aug.joblib', 'knn.joblib', 'nn_without.joblib', 'log.joblib', 'decision_t.joblib','gnb.joblib','gbt.joblib','rf.joblib'])
     
     # Create a list to store the names of uploaded files
     uploaded_file_names = []
@@ -475,7 +475,7 @@ def main():
     st.title("Model Comparison")
 
     # Create a list of supervised model
-    supervised_model_names = ['svm.joblib','svm_without_data_aug.joblib', 'knn.joblib', 'nn.joblib', 'log.joblib', 'decision_t.joblib','gnb.joblib','gbt.joblib','rf.joblib']
+    supervised_model_names = ['svm.joblib','svm_without_data_aug.joblib', 'knn.joblib', 'nn_without.joblib', 'log.joblib', 'decision_t.joblib','gnb.joblib','gbt.joblib','rf.joblib']
     supervised_model_accuracies = []
     supervised_model_precisions = []
     supervised_model_recalls = []
