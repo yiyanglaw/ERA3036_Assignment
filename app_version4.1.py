@@ -82,6 +82,7 @@ def plot_confusion_matrix_heatmap(conf_matrix):
 
 #function to classify shapes
 def classify_shapes(uploaded_files, selected_model):
+    shape_names = ['Circle', 'Square', 'Triangle']
     predictions = []
     best_model = load_model(selected_model)
     
@@ -98,10 +99,10 @@ def classify_shapes(uploaded_files, selected_model):
         # Make predictions using the loaded model
         best_classifier = best_model['model']
         best_prediction = best_classifier.predict([processed_image])[0]
-        predictions.append(best_prediction)
+        predicted_shape = shape_names[best_prediction]
+        predictions.append(predicted_shape)
 
     return predictions
-
 
 #Function for performance/data visualization
 def evaluate_and_display(model_name, model_dict, X_test, y_test, X_train, y_train):
@@ -267,7 +268,12 @@ def plot_learning_curves(model, X_train, y_train):
 
 # Function to plot Predicted Shape Distribution
 def plot_predicted_distribution(predictions):
-    predictions_array = np.array(predictions, dtype=int)  # Convert the list to a NumPy array with integer dtype
+    # Map string labels to numerical values
+    label_mapping = {'Circle': 0, 'Square': 1, 'Triangle': 2}
+    predictions_numerical = [label_mapping[prediction] for prediction in predictions]
+
+    predictions_array = np.array(predictions_numerical, dtype=int)
+
     class_labels = ['Circle', 'Square', 'Triangle']
 
     # Count occurrences of each class
